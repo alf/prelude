@@ -16,6 +16,7 @@
 (define-key alf/toggle-map "e" 'toggle-debug-on-error)
 (define-key alf/toggle-map "f" 'auto-fill-mode)
 (define-key alf/toggle-map "l" 'toggle-truncate-lines)
+(define-key alf/toggle-map "L" 'toggle-word-wrap)
 (define-key alf/toggle-map "q" 'toggle-debug-on-quit)
 (define-key alf/toggle-map "n" #'narrow-or-widen-dwim)
 (define-key alf/toggle-map (kbd "RET") 'toggle-frame-fullscreen)
@@ -27,6 +28,10 @@
 
 
 (define-key ctl-x-map (kbd "C-z") 'magit-status)
+
+;; I don't like the remap from prelude
+(global-unset-key [remap other-window])
+(define-key ctl-x-map "g" 'ace-window)
 
 ;;; My very own prefix key
 (define-prefix-command 'alf/ctl-z-map)
