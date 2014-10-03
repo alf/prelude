@@ -9,6 +9,9 @@
 (unless (fboundp 'magit-gh-pulls-mode)
   (package-install 'magit-gh-pulls))
 
+(unless (fboundp 'org-magit-store-link)
+  (package-install 'org-magit))
+
 (eval-after-load 'magit
   '(define-key magit-mode-map "#gg"
      'endless/load-gh-pulls-mode))
