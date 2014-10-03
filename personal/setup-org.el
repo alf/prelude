@@ -105,7 +105,12 @@
                  '(category-keep))))
               ("w" "Waiting Tasks" tags-todo "-HOLD-CANCELLED+WAITING/!"
                ((org-agenda-overriding-header "Waiting and Postponed tasks"))
-               (org-tags-match-list-sublevels nil)))))
+               (org-tags-match-list-sublevels nil))
+              ("u" "Unscheduled Tasks" alltodo ""
+               ((org-agenda-overriding-header "Tasks")
+                (org-agenda-skip-function
+                 (lambda nil
+                   (org-agenda-skip-entry-if 'scheduled 'deadline 'regexp "\n]+>"))))))))
 
 ; Tags with fast selection keys
 (setq org-tag-alist (quote (("PROJECT" . ?p)
