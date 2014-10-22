@@ -33,6 +33,24 @@
 (global-unset-key [remap other-window])
 (define-key ctl-x-map "g" 'ace-window)
 
+;;;
+;;; create one that does.
+(defun alf/key-chord-undefine (keys)
+  "Undefine the key chord identified by KEYS.
+This should be done by key-chord-unset-global, however that
+does not work."
+  (let ((key1 (logand 255 (aref keys 0)))
+        (key2 (logand 255 (aref keys 1))))
+    (if (eq key1 key2)
+        (global-unset-key (vector 'key-chord key1 key2))
+      ;; else
+      (global-unset-key (vector 'key-chord key1 key2))
+      (global-unset-key (vector 'key-chord key2 key1)))))
+
+;; The jk key chord does not work well in Norwegian
+(alf/key-chord-undefine "jk")
+(key-chord-define-global "jc" 'ace-jump-char-mode)
+
 ;;; My very own prefix key
 (define-prefix-command 'alf/ctl-z-map)
 (define-key global-map (kbd "C-z") 'alf/ctl-z-map)
