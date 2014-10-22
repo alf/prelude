@@ -35,7 +35,7 @@
 
 (prelude-require-package 'ggtags)
 (prelude-require-package 'ag)
+(prelude-require-package 'n3-mode)
 
-(provide 'setup-editor)
-
+  (provide 'setup-editor)
 ;;; setup-editor.el ends here
