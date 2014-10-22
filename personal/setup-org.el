@@ -18,6 +18,8 @@
 (define-key alf/ctl-z-map "j" 'org-clock-goto)
 (define-key alf/ctl-z-map (kbd  "SPC") 'bh/clock-in-last-task)
 
+(require 'org)
+
 ;; Setup org-mobile
 (setq org-mobile-inbox-for-pull "~/Dropbox/Org/refile.org")
 (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
