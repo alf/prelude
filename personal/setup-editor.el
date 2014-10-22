@@ -37,5 +37,17 @@
 (prelude-require-package 'ag)
 (prelude-require-package 'n3-mode)
 
+;;; Useful for getting rid of unsightly colors in eww
+(defun alf/remove-colors ()
+  (interactive)
+  (save-excursion
+    (unless (use-region-p)
+      (mark-whole-buffer))
+    (add-face-text-property (region-beginning)
+                            (region-end)
+                            (list :background "#3f3f3f")
+                            nil)))
+
   (provide 'setup-editor)
+
 ;;; setup-editor.el ends here
