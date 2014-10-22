@@ -22,3 +22,4 @@ session*
 tramp
 /var/pcache
 /.org-id-locations
+/javadoc-cache
