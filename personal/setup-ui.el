@@ -12,7 +12,9 @@
     (set-face-attribute 'default nil :height 200)
   (set-face-attribute 'default nil :height 140))
 
+(require 'helm)
 (setq helm-split-window-default-side 'right)
+(setq helm-split-window-in-side-p nil)
 
 (provide 'setup-ui)
 ;;; setup-ui.el ends here
