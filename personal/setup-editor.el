@@ -36,6 +36,7 @@
 (prelude-require-package 'ggtags)
 (prelude-require-package 'ag)
 (prelude-require-package 'n3-mode)
+(require 'n3-mode)
 
 ;;; Useful for getting rid of unsightly colors in eww
 (defun alf/remove-colors ()
