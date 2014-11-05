@@ -38,7 +38,11 @@
                      (shell-command-to-string  "/usr/libexec/java_home")))
 
 (javadoc-add-artifacts [ch.qos.logback logback-classic "1.1.2"]
-                       [ch.qos.logback logback-core "1.1.2"])
+                       [ch.qos.logback logback-core "1.1.2"]
+                       [io.dropwizard.metrics metrics-jvm "3.1.0"]
+                       [io.dropwizard.metrics metrics-core "3.1.0"]
+                       [io.dropwizard.metrics metrics-servlet "3.1.0"]
+                       [io.dropwizard.metrics metrics-servlets "3.1.0"])
 
 
 
@@ -46,6 +50,8 @@
           (lambda ()
             (ggtags-mode 1)))
 
+(define-key java-mode-map (kbd "C-z a") 'add-java-import)
+(define-key java-mode-map (kbd "C-z d") 'javadoc-lookup)
 (provide 'setup-java)
 
 ;;; setup-java.el ends here
