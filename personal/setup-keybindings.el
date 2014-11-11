@@ -7,6 +7,9 @@
 
 ;;; Code:
 
+;; Switch easily between frames
+(global-set-key (kbd "M-`") 'other-frame)
+
 ;; Toggle features easily with: C-x t <key>
 ;; From http://endlessparentheses.com/the-toggle-map-and-wizardry.html
 (define-prefix-command 'alf/toggle-map)
