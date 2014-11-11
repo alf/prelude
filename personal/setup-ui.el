@@ -16,5 +16,8 @@
 (setq helm-split-window-default-side 'right)
 (setq helm-split-window-in-side-p nil)
 
+;; Prefer eww when opening urls
+(setq browse-url-browser-function 'eww-browse-url)
+
 (provide 'setup-ui)
 ;;; setup-ui.el ends here
