@@ -24,3 +24,5 @@ tramp
 /javadoc-cache
 /org-clock-save.el
 /flycheck_org-clock-save.el
+/smex-items
+/.mc-lists.el
