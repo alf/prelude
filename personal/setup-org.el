@@ -17,7 +17,6 @@
 (define-key alf/ctl-z-map "p" 'alf/org-punch-dwim)
 (define-key alf/ctl-z-map "j" 'org-clock-goto)
 (define-key alf/ctl-z-map (kbd  "SPC") 'bh/clock-in-last-task)
-
 (require 'org)
 
 ;; Setup org-mobile
@@ -34,7 +33,6 @@
   (setq org-agenda-files
         (mapcar 'expand-file-name
                 (list "refile.org" ; Captured items go here
-                      "todo.org" ; General tasks outside of projects
                       "work.org" ; Notes and tasks for work
                       "personal.org" ; Personal items
                       "journal.org" ; This is where I log thoughts and what I do
@@ -51,6 +49,8 @@
            "* TODO %?\n\t%a\n%i" )
           ("c" "capture" entry (file ,(expand-file-name "refile.org"))
            "* %?\n\t%a\n%i" :clock-in t :clock-resume t)
+          ("C" "capture under current clock" entry (clock)
+           "* %?\n\t%a\n%i" )
           ("n" "note" entry (file ,(expand-file-name "refile.org"))
            "* %? :NOTE:\n\t%a" :clock-in t :clock-resume t)
           ("i" "Interruptionion" entry (file ,(expand-file-name "refile.org"))
@@ -210,6 +210,7 @@
          (clojure . t)
          (sh . t)
          (plantuml . t)
+         (restclient . t)
          (latex . t))))
 
 (setq org-startup-with-inline-images t)
@@ -222,6 +223,11 @@
 
 (setq org-src-fontify-natively t)
 
+(require 'org-id)
+(defun bh/clock-in-task-by-id (id)
+  "Clock in a task by id"
+  (org-with-point-at (org-id-find id 'marker)
+    (org-clock-in nil)))
 
 (defun alf/org-punch-dwim ()
   (interactive)
@@ -232,7 +238,8 @@
 (defun alf/org-punch-in ()
   (interactive)
   (org-mobile-pull)
-  (org-clock-in '(4)))
+  (bh/clock-in-task-by-id "d4913cba-f557-4315-ad43-306f801b77c5")
+  (org-agenda nil " "))
 
 (defun alf/org-punch-out ()
   (interactive)
@@ -258,6 +265,6 @@ A prefix arg forces clock in of the default task."
     (org-with-point-at clock-in-to-task
       (org-clock-in nil))))
 
-
 (provide 'setup-org)
+
 ;;; setup-org.el ends here
