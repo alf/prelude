@@ -33,13 +33,37 @@
 
 ;;; Code:
 
-(prelude-require-package 'ggtags)
-(prelude-require-package 'ag)
-(prelude-require-package 'n3-mode)
+(require 'prelude-packages)
+
+(prelude-require-packages
+ '(ggtags
+   ag
+   n3-mode
+   helm-ag
+   restclient
+   dot-mode))
+
+(require 'dot-mode)
+(add-hook 'find-file-hooks 'dot-mode-on)
+
 (require 'n3-mode)
 
-;;; Useful for getting rid of unsightly colors in eww
+(require 'helm)
+(require 'grep)
+(setq helm-split-window-default-side 'right)
+(setq helm-split-window-in-side-p nil)
+
+(setq enable-recursive-minibuffers t)
+
+(require 'projectile)
+(setq projectile-switch-project-action 'helm-projectile)
+
+;; Prefer eww when opening urls
+(setq browse-url-browser-function 'eww-browse-url)
+
 (defun alf/remove-colors ()
+  "Remove all colors in region or whole buffer.
+Useful for getting rid of unsightly colors in eww"
   (interactive)
   (save-excursion
     (unless (use-region-p)
@@ -49,6 +73,34 @@
                             (list :background "#3f3f3f")
                             nil)))
 
-  (provide 'setup-editor)
+(require 'guru-mode)
+(diminish 'smartparens-mode "🄢")
+(diminish 'company-mode "✓")
+(diminish 'guru-mode)
+(diminish 'helm-mode "⎈")
+(setq projectile-mode-line '(:eval
+                             (format "℞[%s]"
+                                    (projectile-project-name))))
+(diminish 'flycheck-mode "✈")
+(diminish 'abbrev-mode)
+(diminish 'prelude-mode)
 
+(setq prelude-guru nil)
+(setq prelude-whitespace nil)
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(defun alf/org-open-at-point-global (&optional use-eww)
+  "Let me choose to use eww or the os browser."
+  (interactive "P")
+  (let ((browse-url-browser-function
+         (if (equal '(4) use-eww) browse-url-browser-function
+           'browse-url-default-browser)))
+    (org-run-like-in-org-mode 'org-open-at-point)))
+
+(global-set-key (kbd "C-c O") 'alf/org-open-at-point-global)
+
+(require 'magit)
+
+(provide 'setup-editor)
 ;;; setup-editor.el ends here
