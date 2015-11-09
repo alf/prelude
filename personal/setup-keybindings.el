@@ -19,6 +19,8 @@
 (define-key projectile-command-map (kbd "s g") 'projectile-grep)
 (define-key projectile-command-map (kbd "s s") 'helm-projectile-ag)
 
+(define-key global-map (kbd "C-c h g") 'helm-do-grep-ag)
+
 (define-key global-map (kbd "C-x C-d") 'dired)
 
 ;; Toggle features easily with: C-x t <key>
