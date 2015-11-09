@@ -43,6 +43,9 @@
 
 (javadoc-add-artifacts
  [org.slf4j slf4j-api "1.7.7"]
+ [org.apache.solr solr-core "4.10.4"]
+ [org.apache.lucene lucene-core "4.10.4"]
+ [org.apache.solr solr-solrj "4.10.4"]
  [ch.qos.logback logback-classic "1.1.2"]
  [ch.qos.logback logback-core "1.1.2"]
  [nil javaee-api "7.0"] ;  Manually downloaded to cache dir
