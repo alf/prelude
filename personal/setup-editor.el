@@ -100,6 +100,12 @@ Useful for getting rid of unsightly colors in eww"
 
 (global-set-key (kbd "C-c O") 'alf/org-open-at-point-global)
 
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (eshell-cmpl-initialize)
+              (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)
+              (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
+
 (require 'magit)
 
 (provide 'setup-editor)
