@@ -56,8 +56,8 @@
 
 (setq enable-recursive-minibuffers t)
 
-(require 'projectile)
-(setq projectile-switch-project-action 'helm-projectile)
+(require 'helm-projectile)
+(helm-projectile-on)
 
 ;; Prefer eww when opening urls
 (setq browse-url-browser-function 'eww-browse-url)

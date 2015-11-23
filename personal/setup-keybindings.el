@@ -8,19 +8,6 @@
 ;; Switch easily between frames
 (global-set-key (kbd "M-`") 'other-frame)
 
-(require 'projectile)
-(define-key projectile-command-map (kbd "b") 'projectile-switch-to-buffer)
-(define-key projectile-command-map (kbd "d") 'helm-projectile-find-dir)
-(define-key projectile-command-map (kbd "e") 'helm-projectile-recentf)
-(define-key projectile-command-map (kbd "f") 'helm-projectile-find-file)
-(define-key projectile-command-map (kbd "F") 'helm-projectile-find-file-in-known-projects)
-(define-key projectile-command-map (kbd "g") 'helm-projectile-find-file-dwim)
-(define-key projectile-command-map (kbd "s a") 'projectile-ag)
-(define-key projectile-command-map (kbd "s g") 'projectile-grep)
-(define-key projectile-command-map (kbd "s s") 'helm-projectile-ag)
-
-(define-key global-map (kbd "C-c h g") 'helm-do-grep-ag)
-
 (define-key global-map (kbd "C-x C-d") 'dired)
 
 ;; Toggle features easily with: C-x t <key>
