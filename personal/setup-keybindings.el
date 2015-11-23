@@ -71,8 +71,12 @@ does not work."
 ;;; My very own prefix key
 (defvar alf/ctl-z-map (make-sparse-keymap))
 (define-key global-map (kbd "C-z") alf/ctl-z-map)
-(define-key alf/ctl-z-map "z" 'ace-jump-mode)
 (define-key alf/ctl-z-map "r" 'alf/recompile)
+
+(require 'avy)
+(global-set-key (kbd "M-g M-g") 'avy-goto-line)
+(global-set-key (kbd "C-z w") 'avy-goto-word-1)
+(global-set-key (kbd "C-z z") 'avy-goto-char-2)
 
 (provide 'setup-keybindings)
 ;;; setup-keybindings.el ends here

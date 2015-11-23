@@ -41,6 +41,7 @@
    n3-mode
    helm-ag
    restclient
+   avy
    dot-mode))
 
 (require 'dot-mode)
