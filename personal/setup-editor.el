@@ -107,7 +107,7 @@ Useful for getting rid of unsightly colors in eww"
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)
               (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))
 
+(server-start)
 (require 'magit)
-
 (provide 'setup-editor)
 ;;; setup-editor.el ends here
