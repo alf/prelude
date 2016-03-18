@@ -89,7 +89,17 @@ Useful for getting rid of unsightly colors in eww"
 (setq prelude-guru nil)
 (setq prelude-whitespace nil)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(setq-default alf/do-delete-trailing-whitespace t)
+(defun alf/delete-trailing-whitespace ()
+  (interactive)
+  (when alf/do-delete-trailing-whitespace
+    (delete-trailing-whitespace)))
+
+(defun alf/toggle-delete-trailing-whitespace ()
+  (interactive)
+  (setq alf/do-delete-trailing-whitespace (not alf/do-delete-trailing-whitespace)))
+
+(add-hook 'before-save-hook 'alf/delete-trailing-whitespace)
 
 (defun alf/org-open-at-point-global (&optional use-eww)
   "Let me choose to use eww or the os browser."
@@ -109,5 +119,9 @@ Useful for getting rid of unsightly colors in eww"
 
 (server-start)
 (require 'magit)
+
+;; Enable tramp sudo proxy over ssh
+(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+
 (provide 'setup-editor)
 ;;; setup-editor.el ends here

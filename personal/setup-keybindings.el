@@ -4,11 +4,14 @@
 ;; This package contains my global keybindings.
 
 ;;; Code:
+(require 'org)
 
 ;; Switch easily between frames
 (global-set-key (kbd "M-`") 'other-frame)
 
 (define-key global-map (kbd "C-x C-d") 'dired)
+(define-key global-map (kbd "C-x C-f") 'helm-find-files)
+(define-key helm-find-files-map (kbd "C-x C-f") 'helm-quit-and-find-file)
 
 ;; Toggle features easily with: C-x t <key>
 ;; From http://endlessparentheses.com/the-toggle-map-and-wizardry.html
@@ -22,9 +25,9 @@
 (define-key alf/toggle-map "q" 'toggle-debug-on-quit)
 (define-key alf/toggle-map "g" 'god-mode)
 (define-key alf/toggle-map "n" #'narrow-or-widen-dwim)
+(define-key alf/toggle-map "W" #'alf/toggle-delete-trailing-whitespace)
 (define-key alf/toggle-map (kbd "RET") 'toggle-frame-fullscreen)
 
-(require 'org)
 ;;; "C-x t n" to enter org src blocks, and "C-x C-s" to exit
 (eval-after-load 'org-src
   '(define-key org-src-mode-map
@@ -64,6 +67,9 @@ does not work."
 (global-set-key (kbd "M-g M-g") 'avy-goto-line)
 (global-set-key (kbd "C-z w") 'avy-goto-word-1)
 (global-set-key (kbd "C-z z") 'avy-goto-char-2)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-z m") 'mc/mark-all-dwim)
 
 (provide 'setup-keybindings)
 ;;; setup-keybindings.el ends here

@@ -180,6 +180,8 @@
 (setq org-outline-path-complete-in-steps nil)
 (setq org-completion-use-helm t)
 
+(setq org-blank-before-new-entry '((heading . always) (plain-list-item . auto)))
+
 (setq org-agenda-clock-consistency-checks
       (quote (:max-duration "8:00"
                             :min-duration 0
@@ -209,6 +211,7 @@
          (gnuplot . t)
          (clojure . t)
          (sh . t)
+         (java . t)
          (plantuml . t)
          (restclient . t)
          (latex . t))))
@@ -264,6 +267,26 @@ A prefix arg forces clock in of the default task."
     (widen)
     (org-with-point-at clock-in-to-task
       (org-clock-in nil))))
+
+;; Setup org-latex
+(setq org-latex-pdf-process
+      '("xelatex -interaction nonstopmode %f"
+        "xelatex -interaction nonstopmode %f"))
+
+
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+             '("bouvet"
+               "\\documentclass[norsk,10pt,a4paper]{article}
+\\usepackage{bouvet}
+\\usepackage[normalem]{ulem}
+\\usepackage{wrapfig}
+\\usepackage{csquotes}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 (provide 'setup-org)
 

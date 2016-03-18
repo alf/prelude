@@ -32,12 +32,17 @@
 ;; Boston, MA 02110-1301, USA.
 
 ;;; Code:
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (defvar current-user
       (getenv
        (if (equal system-type 'windows-nt) "USERNAME" "USER")))
 
-(setenv "SHELL" "/usr/local/bin/zsh")
-(toggle-debug-on-error)
 (message "Prelude is powering up... Be patient, Master %s!" current-user)
 
 (when (version< emacs-version "24.1")
@@ -135,4 +140,3 @@ by Prelude.")
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
 ;;; init.el ends here
-(put 'set-goal-column 'disabled nil)
